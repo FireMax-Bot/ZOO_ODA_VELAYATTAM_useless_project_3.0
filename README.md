@@ -145,7 +145,7 @@ ZOO_ODA-VELAYATTAM
 ![Recording](screenshots/recording.png)
 *Recording screen showing the webcam and microphone being used.*
 
-![Generated Result](screenshots/results.png)
+![Generated Result](screenshots/result.png)
 *Final animal sound generated from the user's voice and facial expression*
 
 # Flow chart
