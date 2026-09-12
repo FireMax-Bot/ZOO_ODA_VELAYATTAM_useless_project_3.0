@@ -89,6 +89,15 @@ export interface EmotionPreset {
   distortion?: number;
   tremolo?: { freq: number; depth: number };
   reverb?: boolean;
+  /**
+   * How much a syllable's pitch (relative to the utterance) bends this
+   * call's playback rate, 0..1. Defaults to 0.6 when omitted. Tonal calls
+   * (barks, moos, meows) want the default so they audibly follow your
+   * voice's contour; noise-like calls (a hiss has no real "pitch") should
+   * dial this down, or full pitch-tracking just reads as random, wrong
+   * pitch jumps instead of anger.
+   */
+  pitchTracking?: number;
 }
 
 const EMOTION_PRESETS: Record<Emotion, EmotionPreset> = {
@@ -365,7 +374,7 @@ export async function renderAnimalVoice(
       }
 
       const semitoneDelta = syl.f0 > 0 ? 12 * Math.log2(syl.f0 / medianF0) : 0;
-      const pitchRatio = Math.pow(2, (semitoneDelta * 0.6) / 12);
+      const pitchRatio = Math.pow(2, (semitoneDelta * (preset.pitchTracking ?? 0.6)) / 12);
       const jitterAmt = 1 + (Math.random() * 2 - 1) * preset.jitter;
 
       const playbackRate = clamp(preset.rate * pitchRatio * jitterAmt, 0.45, 2.2);

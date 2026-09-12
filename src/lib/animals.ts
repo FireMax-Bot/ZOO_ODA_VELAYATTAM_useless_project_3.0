@@ -112,7 +112,10 @@ export const ANIMALS: Animal[] = [
       mew: clipSet("cat", "mew", 4),
     },
     presetOverrides: {
-      angry: { distortion: 0, filter: { type: "bandpass", freq: 3500 } },
+      // Hiss is noise, not a tone — chasing the human voice's pitch on it
+      // (the 0.6 default) just produced random-sounding pitch jumps rather
+      // than anger. Dialed way down; a little is kept for liveliness.
+      angry: { distortion: 0, filter: { type: "bandpass", freq: 3500 }, pitchTracking: 0.15 },
     },
   },
   {
