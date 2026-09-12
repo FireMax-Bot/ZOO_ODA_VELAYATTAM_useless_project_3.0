@@ -156,8 +156,9 @@ flowchart TD
     B --> D[MediaRecorder captures audio]
     A2[Tap mic again to stop] --> E[Decode recorded audio]
     D --> E
-    C --> F[Aggregate face frames -> Happy /Angry / Sad]
+    C --> F[Aggregate face frames → Happy /Angry / Sad]
     E --> G[Detect syllables + pitch contour]
+    E --> H[Extract voice loudness/pitch/rates]
     F --> I{fusion.ts}
     H --> I
     I -->|face gesture decides the emotion| J[Chosen emotion + intensity]
