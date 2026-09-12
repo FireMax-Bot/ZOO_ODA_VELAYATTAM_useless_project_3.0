@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm create vite@latest . -- --template react-ts 2>&1)",
+      "PowerShell(npx --yes create-vite@latest . --template react-ts 2>&1)",
+      "PowerShell(npm view vite version)",
+      "PowerShell(npm view react version)",
+      "PowerShell(npm view react-dom version)",
+      "PowerShell(npm view typescript version)",
+      "PowerShell(npm view tailwindcss version)",
+      "PowerShell(npm view @vitejs/plugin-react version)",
+      "PowerShell(npm view @mediapipe/tasks-vision version)",
+      "PowerShell(npm view @tailwindcss/vite version)",
+      "PowerShell(npm view @types/react version)",
+      "PowerShell(npm view @types/react-dom version)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task\" -Method Head -TimeoutSec 10; Write-Output \"STATUS: $\\($r.StatusCode\\)\" } catch { Write-Output \"FAILED: $\\($_.Exception.Message\\)\" })",
+      "PowerShell(try { $ProgressPreference = 'SilentlyContinue'; $r = Invoke-WebRequest -Uri \"https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task\" -Method Get -TimeoutSec 15 -UseBasicParsing -OutFile \"$env:TEMP\\\\test_facelandmarker.task\"; Write-Output \"OK\"; Get-Item \"$env:TEMP\\\\test_facelandmarker.task\" | Select-Object Length } catch { Write-Output \"FAILED: $\\($_.Exception.Message\\)\" })",
+      "PowerShell(npm install 2>&1)",
+      "PowerShell(Copy-Item -Recurse -Force \"N:\\\\Translator\\\\node_modules\\\\@mediapipe\\\\tasks-vision\\\\wasm\" \"N:\\\\Translator\\\\public\\\\wasm\")",
+      "PowerShell(npx tsc -b --pretty 2>&1)",
+      "PowerShell(Get-Job -Name translator-dev)",
+      "PowerShell(Receive-Job -Name translator-dev -Keep 2>&1)"
+    ]
+  }
+}
