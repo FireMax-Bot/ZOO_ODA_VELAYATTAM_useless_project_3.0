@@ -2,96 +2,177 @@
 
 
 
-# [Project Name] 🎯
+# ZOO_ODA VELAYATTAM 🐶🐱🐄🐐
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: Matrix
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Noel Issac AJ - Toc H Institute of Science & Technology
+- Member 2: Arjun SM - Toc H Institute of Science & Technology
+
 
 ### Project Description
-[2-3 lines about what your project does]
+ZOO_ODA VELAYATTAM is a completely unnecessary animal voice translator that lets you talk to your webcam and microphone and turns your voice into an animal sound
+
+You choose an animal , make a face, say something, and the system tries to make the animal sound match your emotion, voice pitch and speaking rhythm.
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+
+Have you ever wanted to know what you would sound like as a dog?
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+
+We built an app that listens to your voice and watches your face.
+
+You choose a dog , cat , cow or goat and starts talking.
+
+The camera checks your facial expression and decides whether you look Happy ,Angry or sad . At the same time , the microphone checks things like your pitch , loudness , rhythm and syllables
+
+The system then takes animal sound clips and modifies them to roughly follow the way you spoke.
+
+So if you angrily say something with a rising pitch , you get an angry animal sound that follows the pattern.
+
+Was this necessary?
+No.
+
+Does it work?
+Yes.
 
 ## Technical Details
-### Technologies/Components Used
+
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- TypeScript
+- React 19
+- Vite
+- Tailwind CSS v4
+- Web Audio API
+- MediaRecorder API
+- OfflineAudioContext
+- Custom Digital Signal Processing (DSP)
+- Autocorrelation for pitch detection
+- RMS energy and peak picking for syllable detection
+- Custom FFT based audio analysis
 
 For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+- Webcam
+- Microphone
+- Laptop
+- Speakers
 
 ### Implementation
-For Software:
+
+
 # Installation
-[commands]
+```bash
+npm install
+npm run dev
+```
 
-# Run
-[commands]
+Open the printed 'http://localhost:5173'
 
-### Project Documentation
-For Software:
+```bash
+npm run build
+npm run preview
+```
 
-# Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+### Project Structure
+```
+ZOO_ODA-VELAYATTAM
+|--README.md
+|--PROJECT.md
+|--CREDITS.md
+|--index.html
+|--package.json
+|--vite.config.ts
+|
+|--public/
+|  |--background.jpg
+|  |--title-banner.png
+|  |--models/
+|  |--wasm/
+|  |--icons/
+|  |--screenshots/
+|  |   |--home.png
+|  |   |--recording.png
+|  |   |--results.png
+|  |--sounds/
+|    |--dog/
+|    |--cat/
+|    |--goat/
+|    |--cow/
+|
+|-src/
+  |--main.tsx
+  |--App.tsx
+  |--index.css
+  |
+  |--components/
+  |  |--GlassPanel.tsx
+  |  |--WebcamStage.tsx
+  |  |--EmotionLegend.tsx
+  |  |--ControlPanel.tsx
+  |  |--HumanPanel.tsx
+  |  |--AnimalPanel.tsx
+  |  |--UtilityCluster.tsx
+  |  |--Icon.tsx
+  |  |--TitleBanner.tsx
+  |  |--Icon.tsx
+  |  |--PixelIcon.tsx
+  |  |--Waveform.tsx
+  |
+  |--lib/
+      |--capture.ts
+      |--faceEmotion.ts
+      |--voiceEmotion.ts
+      |--audioAnalysis.ts
+      |--prosody.ts
+      |--fusion.ts
+      |--animals.ts
+      |--animalVoice.ts
+      |--gloss.ts
+      |--wav.ts
+      |--emotionSpace.ts
+      |--types.ts
+```
+# Screenshots 
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Home Screen](screenshots/home.png)
+*Main Screen where the user selects an animal and starts the recording*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![Recording](screenshots/recording.png)
+*Recording screen showing the webcam and microphone being used.*
 
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+![Generated Result](screenshots/results.png)
+*Final animal sound generated from the user's voice and facial expression*
 
-For Hardware:
+# Flow chart
+```mermaid
+flowchart TD
+    A[Tap mic] --> B[Webcam + mic recording starts]
+    B --> C[MediaPipe reads face blendshapes, 15fps]
+    B --> D[MediaRecorder captures audio]
+    A2[Tap mic again to stop] --> E[Decode recorded audio]
+    D --> E
+    C --> F[Aggregate face frames -> Happy /Angry / Sad]
+    E --> G[Detect syllables + pitch contour]
+    F --> I{fusion.ts}
+    H --> I
+    I -->|face gesture decides the emotion| J[Chosen emotion + intensity]
+    G --> K[animalVoice.ts: render]
+    J --> K
+    K --> L[One animal call per syllable,<br/>pitch-matched,emotion-wraped]
+    L --> M[Play button + WAV download]
+```
 
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
 
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
-
-### Project Demo
-# Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-# Additional Demos
-[Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Noel: Main programming , audio processing , face emotion detection
+- Arjun: UI/UX Design , frontend development and making the interface clean and easy to use
+
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
